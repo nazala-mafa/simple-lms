@@ -1,6 +1,8 @@
 <?php
 
 use App\Events\MyEvent;
+use App\Jobs\SendEmailJob;
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +20,14 @@ Route::get('/', function () {
     return view('pusher.channels');
 });
 
-Route::get('/pusher', function () {
-    $res = event(new MyEvent([
-        'message' => 'hello world'
-    ]));
-    dd($res);
+Route::get('/job', function () {
+    // dispatch((new SendEmailJob('annad8388@gmail.com'))->delay(now()->addSeconds(3)));
+    dispatch((new SendEmailJob('annad8388@gmail.com')));
+    // Artisan::call('queue:work', [
+    //     '--once' => true,
+    //     '--queue' => 'default',
+    //     '--timeout' => 60,
+    //     '--tries' => 3
+    // ]);
+    echo 'email sent';
 });
