@@ -15,5 +15,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+  return $request->user();
+});
+
+Route::group(['prefix' => '/auth', 'namespace' => '\App\Http\Controllers'], function () {
+  Route::post('/login', 'AuthController@login');
+  Route::post('/register', 'AuthController@register');
+});
+
+Route::resource('product', '\App\Http\Controllers\ProductController')->except('create', 'edit');
+Route::group(['prefix' => '/product', 'namespace' => '\App\Http\Controllers'], function () {
 });
