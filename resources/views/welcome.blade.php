@@ -1,20 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('layouts.app')
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <style>
-    body {
-      font-family: sans-serif;
-    }
-  </style>
-  <title>Document</title>
-</head>
-
-<body>
-  <h1>HELLO WORLD</h1>
-</body>
-
-</html>
+@section('content')
+  <div class="container">
+    <h1>HELLO WORLD</h1>
+    @livewire('products')
+  </div>
+@endsection

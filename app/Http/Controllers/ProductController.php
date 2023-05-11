@@ -3,95 +3,88 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
-use Gate;
+use Illuminate\Http\Request;
+use Yajra\DataTables\DataTables;
 
 class ProductController extends Controller
 {
+    public function datatables()
+    {
+        return DataTables::of(Product::select('*'))->toJson();
+    }
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Contracts\View\View
      */
     public function index()
     {
-        $limit = request()->input('limit', 10);
-        $order = request()->input('order', 'desc');
-        $orderBy = request()->input('orderBy', 'id');
+        return view('private.product.index');
+    }
 
-        $products = Product::orderBy($orderBy, $order)->select(['id', 'name'])->paginate($limit);
-
-        return response()->json(['data' => $products], 200);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
-     * @return \Illuminate\Http\JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        $productId = Product::insertGetId([
-            'name' => $request->input('name'),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        $product = Product::find($productId);
-
-        return response()->json([
-            'message' => "Produk $product->name berhasil disimpan",
-            'data' => $product
-        ], 201);
+        //
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\JsonResponse
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show($id)
     {
-        dd($this->authorize('view'));
+        //
+    }
 
-        return response()->json([
-            'data' => $product
-        ], 201);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\JsonResponse
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $product->name = $request->input('name');
-
-        return response()->json([
-            'message' => "Produk $product->name berhasil diupdate",
-            'data' => $product
-        ], 201);
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\JsonResponse
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        $product->delete();
-
-        return response()->json([
-            'message' => "Produk $product->name berhasil dihapus",
-            'data' => $product
-        ], 201);
+        //
     }
 }
