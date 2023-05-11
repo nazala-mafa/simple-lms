@@ -1,0 +1,13 @@
+{
+    "name": "Perpus",
+    "alias": "perpus",
+    "description": "",
+    "keywords": [],
+    "priority": 0,
+    "providers": [
+        "Modules\\Perpus\\Providers\\PerpusServiceProvider"
+    ],
+    "aliases": {},
+    "files": [],
+    "requires": []
+}
