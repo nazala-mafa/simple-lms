@@ -29,9 +29,33 @@
     </main>
   </div>
 
+  @include('layouts.util')
+
   @livewireScripts
   @yield('script')
   @vite(['resources/js/app.js'])
+
+  @if (Session::has('message'))
+    <script>
+      let swalPushData = {
+        title: 'Congratulation!',
+        body: `{{ Session::get('message') }}`,
+        type: 'success'
+      }
+    </script>
+  @elseif(Session::has('error'))
+    <script>
+      let swalPushData = {
+        title: 'We are sorry!',
+        body: `{{ Session::get('error') }}`,
+        type: 'error'
+      }
+    </script>
+  @else
+    <script>
+      let swalPushData = null
+    </script>
+  @endif
 </body>
 
 </html>

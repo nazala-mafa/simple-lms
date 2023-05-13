@@ -12,6 +12,11 @@
       <!-- Left Side Of Navbar -->
       <ul class="navbar-nav me-auto">
         @auth
+          @role('Super Admin')
+            <li class="nav-item">
+              <a href="{{ route('master.user.index') }}" class="nav-link">Users</a>
+            </li>
+          @endrole
           <li class="nav-item">
             <a href="{{ route('quiz.index') }}" class="nav-link">Quiz</a>
           </li>

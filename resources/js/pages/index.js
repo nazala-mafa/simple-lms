@@ -12,3 +12,7 @@ if (
 ) {
   import("./question");
 }
+
+if (window.location.pathname === "/master/user") {
+  import("./master/user");
+}
