@@ -6,7 +6,12 @@ use App\Http\Controllers\QuizController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('welcome');
+
+    if (auth()->check()) {
+        return redirect('/home');
+    } else {
+        return view('welcome');
+    }
 });
 
 include_once 'web/test.php';

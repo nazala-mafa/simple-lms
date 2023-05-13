@@ -30,5 +30,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // Gate::resource('products', ProductPolicy::class);
+        Gate::before(function ($user, $ability) {
+            if ($user->hasRole('Super Admin')) {
+                return true;
+            }
+        });
     }
 }

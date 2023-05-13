@@ -16,10 +16,18 @@ class UserSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'test',
-            'email' => 'test@example.com',
-            'password' => password_hash('1234', PASSWORD_BCRYPT)
+        // User::factory()->create([
+        //     'name' => 'test',
+        //     'email' => 'test@example.com',
+        //     'password' => password_hash('1234', PASSWORD_BCRYPT)
+        // ]);
+
+        $superadmin = User::factory()->create([
+            'name' => 'superadmin',
+            'email' => 'superadmin@example.com',
+            'password' => bcrypt('1234')
         ]);
+
+        $superadmin->assignRole('Super Admin');
     }
 }

@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->callOnce([
+            RoleSeeder::class,
             UserSeeder::class,
             ProductSeeder::class,
         ]);
