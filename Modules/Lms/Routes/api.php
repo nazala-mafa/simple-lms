@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Lms\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/lms', function (Request $request) {
-    return $request->user();
+Route::prefix('lms')->group(function () {
+    Route::get('course/datatable', [CourseController::class, 'datatable'])->name('course.datatable');
 });

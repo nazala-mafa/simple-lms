@@ -13,10 +13,15 @@ if (
   import("./question");
 }
 
+// == Master
 if (window.location.pathname === "/master/user") {
   import("./master/user");
 }
-
 if (window.location.pathname === "/master/school") {
   import("./master/school");
+}
+
+// == LMS
+if (window.location.pathname === "/lms/course") {
+  import("./lms/course");
 }

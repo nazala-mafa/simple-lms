@@ -6,14 +6,18 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class course extends Model
+class Course extends Model
 {
     use HasFactory;
 
     protected $fillable = ['title', 'description', 'is_published'];
 
-    public function partisipant()
+    public function contributors()
     {
-        return $this->belongsToMany(User::class)->using(CoursePartisipant::class);
+        return $this->belongsToMany(User::class, 'course_contributor', 'course_id', 'user_id')->withTimestamps();
+    }
+    public function partisipants()
+    {
+        return $this->belongsToMany(User::class, 'course_partisipant', 'course_id', 'user_id')->withTimestamps();
     }
 }

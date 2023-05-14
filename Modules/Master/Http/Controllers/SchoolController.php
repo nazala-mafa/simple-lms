@@ -48,7 +48,7 @@ class SchoolController extends Controller
             'name' => 'required|min:4|max:100|unique:schools,name',
             'email' => 'required|unique:schools,email|email',
             'address' => 'required|min:4',
-            'status_id' => 'required'
+            'status_id' => 'required|exists:school_statuses,id'
         ]);
 
         $school = School::create([

@@ -19,7 +19,7 @@
                 Master
               </a>
 
-              <div class="dropdown-menu" aria-labelledby="master-drop-down">
+              <div class="dropdown-menu m-0" aria-labelledby="master-drop-down">
                 <ul class="list-group list-group-flush">
                   <li class="list-group-item">
                     <a href="{{ route('master.user.index') }}" class="nav-link">Users</a>
@@ -38,7 +38,7 @@
               LMS
             </a>
 
-            <div class="dropdown-menu" aria-labelledby="master-drop-down">
+            <div class="dropdown-menu m-0" aria-labelledby="master-drop-down">
               <ul class="list-group list-group-flush">
                 <li class="list-group-item">
                   <a href="{{ route('lms.course.index') }}" class="nav-link">Courses</a>
@@ -78,7 +78,7 @@
               {{ Auth::user()->name }}
             </a>
 
-            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu dropdown-menu-end m-0" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="{{ route('logout') }}"
                 onclick="event.preventDefault();
                 document.getElementById('logout-form').submit();">

@@ -1,4 +1,5 @@
 <?php
+use Modules\Lms\Http\Controllers\CourseController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,9 @@
 |
 */
 
-Route::prefix('lms')->group(function() {
+Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(function () {
     Route::get('/', 'LmsController@index');
+
+    Route::resource('course', CourseController::class)->names('lms.course');
+    Route::post('course.add-partisipant', [CourseController::class, 'add_partisipant'])->name('lms.course.add-partisipant');
 });
