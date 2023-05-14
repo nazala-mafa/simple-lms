@@ -2,6 +2,7 @@
 
 namespace Modules\Master\Entities;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -13,11 +14,11 @@ class School extends Model
         'name',
         'email',
         'address',
-        'status',
+        'status_id',
     ];
 
     public function status()
     {
-        return $this->hasOne('school_statuses', 'id', 'school_id');
+        return $this->hasOne(SchoolStatus::class, 'id', 'status_id');
     }
 }

@@ -13,4 +13,9 @@ class Quiz extends Model
         'user_id',
         'title'
     ];
+
+    public function questions()
+    {
+        return $this->hasMany(Question::class, 'quiz_id', 'id');
+    }
 }

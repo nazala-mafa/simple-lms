@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function datatable()
     {
-        return DataTables::of(User::with(['schools', 'roles'])->get())->toJson();
+        return DataTables::of(User::with('school', 'roles')->get())->toJson();
     }
     /**
      * Display a listing of the resource.

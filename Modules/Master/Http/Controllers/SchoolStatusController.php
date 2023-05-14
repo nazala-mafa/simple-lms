@@ -6,9 +6,9 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Master\Entities\School;
-use Modules\Master\Entities\SchoolStatuses;
+use Modules\Master\Entities\SchoolStatus;
 
-class SchoolStatusesController extends Controller
+class SchoolStatusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,7 +16,7 @@ class SchoolStatusesController extends Controller
      */
     public function index()
     {
-        $statuses = SchoolStatuses::all();
+        $statuses = SchoolStatus::all();
         return view('master::school.status.index', compact('statuses'));
     }
 
@@ -40,7 +40,7 @@ class SchoolStatusesController extends Controller
             'name' => 'required|unique:school_statuses,name'
         ]);
 
-        SchoolStatuses::create([
+        SchoolStatus::create([
             'name' => $request->name
         ]);
 
@@ -54,13 +54,9 @@ class SchoolStatusesController extends Controller
      */
     public function show($id)
     {
-        $schools = School::with([
-            'school_statuses' => function ($q) use ($id) {
-                $q->where('id', $id);
-            }
-        ]);
-        dd($schools);
-        return view('master::show', compact('schools'));
+        $status = SchoolStatus::find($id);
+
+        return view('master::school.status.show', compact('status'));
     }
 
     /**

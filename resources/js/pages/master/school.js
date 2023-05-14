@@ -29,6 +29,10 @@ $(function () {
       },
       {
         data: "status",
+        render: function (data) {
+          if (!data) return " - ";
+          return data.name;
+        },
       },
       {
         data: "id",

@@ -28,7 +28,7 @@ $(function () {
         },
       },
       {
-        data: "schools",
+        data: "school",
         render: function (data) {
           if (!data) return " - ";
           return data.name;

@@ -60,15 +60,6 @@
     </script>
   @endif
 
-
-  <script>
-    swalPushData = {
-      title: 'Congratulation!',
-      body: `hhehe`,
-      type: 'success'
-    }
-  </script>
-
 </body>
 
 </html>
