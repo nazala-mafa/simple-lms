@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Master\Http\Controllers\SchoolController;
 use Modules\Master\Http\Controllers\UserController;
 
 /*
@@ -16,4 +17,5 @@ use Modules\Master\Http\Controllers\UserController;
 
 Route::prefix('master')->group(function () {
     Route::get('user/datatable', [UserController::class, 'datatable']);
+    Route::get('school/datatable', [SchoolController::class, 'datatable']);
 });

@@ -16,3 +16,7 @@ if (
 if (window.location.pathname === "/master/user") {
   import("./master/user");
 }
+
+if (window.location.pathname === "/master/school") {
+  import("./master/school");
+}

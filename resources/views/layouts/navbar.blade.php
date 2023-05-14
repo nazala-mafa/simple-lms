@@ -16,6 +16,9 @@
             <li class="nav-item">
               <a href="{{ route('master.user.index') }}" class="nav-link">Users</a>
             </li>
+            <li class="nav-item">
+              <a href="{{ route('master.school.index') }}" class="nav-link">Schools</a>
+            </li>
           @endrole
           <li class="nav-item">
             <a href="{{ route('quiz.index') }}" class="nav-link">Quiz</a>
