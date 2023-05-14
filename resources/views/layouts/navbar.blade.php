@@ -13,13 +13,40 @@
       <ul class="navbar-nav me-auto">
         @auth
           @role('Super Admin')
-            <li class="nav-item">
-              <a href="{{ route('master.user.index') }}" class="nav-link">Users</a>
-            </li>
-            <li class="nav-item">
-              <a href="{{ route('master.school.index') }}" class="nav-link">Schools</a>
+            <li class="nav-item dropdown">
+              <a id="master-drop-down" class="nav-link dropdown-toggle" href="#" role="button"
+                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                Master
+              </a>
+
+              <div class="dropdown-menu" aria-labelledby="master-drop-down">
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">
+                    <a href="{{ route('master.user.index') }}" class="nav-link">Users</a>
+                  </li>
+                  <li class="list-group-item">
+                    <a href="{{ route('master.school.index') }}" class="nav-link">Schools</a>
+                  </li>
+                </ul>
+              </div>
             </li>
           @endrole
+
+          <li class="nav-item dropdown">
+            <a id="master-drop-down" class="nav-link dropdown-toggle" href="#" role="button"
+              data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+              LMS
+            </a>
+
+            <div class="dropdown-menu" aria-labelledby="master-drop-down">
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                  <a href="{{ route('lms.course.index') }}" class="nav-link">Courses</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+
           <li class="nav-item">
             <a href="{{ route('quiz.index') }}" class="nav-link">Quiz</a>
           </li>
