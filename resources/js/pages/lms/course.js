@@ -17,6 +17,12 @@ $(function () {
         data: "title",
       },
       {
+        data: "is_published",
+        render: function (data) {
+          return data == "1" ? "Published" : "Draft";
+        },
+      },
+      {
         data: "id",
         render: function (_, __, row) {
           const rowData = JSON.stringify(row);
