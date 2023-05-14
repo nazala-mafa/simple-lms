@@ -28,6 +28,20 @@ $(function () {
         },
       },
       {
+        data: "schools",
+        render: function (data) {
+          if (!data) return " - ";
+          return data.name;
+        },
+      },
+      {
+        data: "roles",
+        render: function (data) {
+          if (!data) return " - ";
+          return data.map((d) => d.name).join(", ");
+        },
+      },
+      {
         data: "id",
         render: function (_, __, row) {
           const rowData = JSON.stringify(row);

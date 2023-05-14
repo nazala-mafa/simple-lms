@@ -37,10 +37,10 @@
             @enderror
           </div>
           <div class="mb-3">
-            <input type="password" name="password-confirm"
-              class="form-control @error('password-confirm') is-invalid @enderror" value="{{ old('password-confirm') }}"
+            <input type="password" name="password_confirm"
+              class="form-control @error('password_confirm') is-invalid @enderror" value="{{ old('password_confirm') }}"
               placeholder="Password Confirmation">
-            @error('password-confirm')
+            @error('password_confirm')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>
@@ -57,6 +57,15 @@
                 {{ $message }}
               </div>
             @enderror
+          </div>
+          <div class="mb-3">
+            <select name="school_id" class="select2 @error('role') is-invalid @enderror w-100"
+              value="{{ old('role') }}">
+              <option disabled selected>Choose School</option>
+              @foreach ($schools as $school)
+                <option value="{{ $school->id }}">{{ $school->name }}</option>
+              @endforeach
+            </select>
           </div>
           <div class="mb-3">
             <button type="submit" class="btn btn-primary w-100">Add User</button>

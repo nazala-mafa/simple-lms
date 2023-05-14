@@ -2,12 +2,12 @@
 
 namespace Modules\Master\Http\Controllers;
 
-use App\Constants\Statuses;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
 use Modules\Master\Entities\School;
+use Modules\Master\Entities\SchoolStatuses;
 use Yajra\DataTables\DataTables;
 
 class SchoolController extends Controller
@@ -32,7 +32,7 @@ class SchoolController extends Controller
     public function create()
     {
         return view('master::school.create', [
-            'statuses' => Statuses::$school
+            'statuses' => SchoolStatuses::all()
         ]);
     }
 

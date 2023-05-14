@@ -1,11 +1,11 @@
 @extends('master::layouts.master')
 
 @section('content')
-  {{-- @dd($errors) --}}
   <div class="container">
     <div class="card">
-      <div class="card-header">
-        <h1>Create New School</h1>
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h2>Create New School</h2>
+        <a class="btn btn-primary" href="{{ route('master.school.status.index') }}">Add school status<a>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('master.school.store') }}">
@@ -38,12 +38,13 @@
             @enderror
           </div>
           <div class="mb-3">
-            <select name="status" class="form-control @error('role') is-invalid @enderror" value="{{ old('role') }}">
+            <select name="status_id" class="form-control @error('status_id') is-invalid @enderror"
+              value="{{ old('status_id') }}">
               @foreach ($statuses as $status)
-                <option value="{{ $status }}">Status - {{ $status }}</option>
+                <option value="{{ $status->id }}">Status - {{ $status->name }}</option>
               @endforeach
             </select>
-            @error('role')
+            @error('status_id')
               <div class="invalid-feedback">
                 {{ $message }}
               </div>

@@ -5,7 +5,12 @@ $(function () {
     processing: true,
     serverSide: true,
     ajax: "/api/master/school/datatable",
-    buttons: ["add"],
+    buttons: [
+      "add",
+      {
+        extend: "reload",
+      },
+    ],
     columns: [
       {
         data: "id",

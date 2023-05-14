@@ -7,6 +7,7 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
+use Modules\Master\Entities\School;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 
@@ -14,7 +15,7 @@ class UserController extends Controller
 {
     public function datatable()
     {
-        return DataTables::of(User::all())->toJson();
+        return DataTables::of(User::with(['schools', 'roles'])->get())->toJson();
     }
     /**
      * Display a listing of the resource.
@@ -32,7 +33,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::where('name', '!=', 'Super Admin')->get();
-        return view('master::user.create', compact('roles'));
+        $schools = School::all();
+        return view('master::user.create', compact('roles', 'schools'));
     }
 
     /**
@@ -46,14 +48,15 @@ class UserController extends Controller
             'name' => 'required|min:4|max:100|unique:users,name',
             'email' => 'required|unique:users,email|email',
             'password' => 'required|min:4',
-            'password-confirm' => 'required|min:4|same:password',
+            'password_confirm' => 'required|min:4|same:password',
             'role' => 'required|exists:roles,id'
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'school_id' => $request->school_id
         ]);
 
         $user->assignRole($request->role);
@@ -79,7 +82,8 @@ class UserController extends Controller
     public function edit(User $user)
     {
         $roles = Role::where('name', '!=', 'Super Admin')->get();
-        return view('master::user.edit', compact('roles', 'user'));
+        $schools = School::all();
+        return view('master::user.edit', compact('roles', 'user', 'schools'));
     }
 
     /**
@@ -102,13 +106,14 @@ class UserController extends Controller
                 'required',
                 'email', Rule::unique('users')->ignore($user->id),
             ],
-            'password-confirm' => 'same:password',
+            'password_confirm' => 'same:password',
             'role' => 'required|exists:roles,id'
         ]);
 
         $newData = [
             'name' => $request->name,
             'email' => $request->email,
+            'school_id' => $request->school_id
         ];
         if ($request->password) {
             $newData['password'] = bcrypt($request->password);

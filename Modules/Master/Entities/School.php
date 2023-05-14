@@ -15,4 +15,9 @@ class School extends Model
         'address',
         'status',
     ];
+
+    public function status()
+    {
+        return $this->hasOne('school_statuses', 'id', 'school_id');
+    }
 }

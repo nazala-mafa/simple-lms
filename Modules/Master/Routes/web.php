@@ -1,6 +1,7 @@
 <?php
 use Modules\Master\Http\Controllers\MasterController;
 use Modules\Master\Http\Controllers\SchoolController;
+use Modules\Master\Http\Controllers\SchoolStatusesController;
 use Modules\Master\Http\Controllers\UserController;
 
 /*
@@ -18,5 +19,6 @@ Route::prefix('master')->middleware(['auth', 'role:Super Admin'])->group(functio
     Route::get('/', [MasterController::class, 'index']);
 
     Route::resource('user', UserController::class)->names('master.user');
+    Route::resource('school/status', SchoolStatusesController::class)->names('master.school.status');
     Route::resource('school', SchoolController::class)->names('master.school');
 });
