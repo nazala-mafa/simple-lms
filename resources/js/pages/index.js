@@ -25,3 +25,10 @@ if (window.location.pathname === "/master/school") {
 if (window.location.pathname === "/lms/course") {
   import("./lms/course");
 }
+if (
+  window.location.pathname.split("/")[1] === "lms" &&
+  window.location.pathname.split("/")[2] === "course" &&
+  window.location.pathname.split("/")[4] === "edit"
+) {
+  import("./lms/course.edit");
+}

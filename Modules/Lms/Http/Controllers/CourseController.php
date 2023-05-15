@@ -7,12 +7,14 @@ use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Modules\Lms\Entities\Course;
+use Modules\Lms\Entities\CourseActivity;
 use Yajra\DataTables\DataTables;
 
 class CourseController extends Controller
 {
     public function datatable()
     {
+        //get courses that you are contributor
         return DataTables::of(Course::all())->toJson();
     }
     /**
@@ -77,7 +79,9 @@ class CourseController extends Controller
     {
         $course = Course::findOrFail($id);
         $users = User::all();
-        return view('lms::course.edit', compact('course', 'users'));
+        $courseActivities = CourseActivity::where('course_id', $id)->get();
+
+        return view('lms::course.edit', compact('course', 'users', 'courseActivities'));
     }
 
     /**
@@ -115,11 +119,14 @@ class CourseController extends Controller
     /**
      * Remove the specified resource from storage.
      * @param int $id
-     * @return Renderable
+     * @return \Illuminate\Http\RedirectResponse returned
      */
     public function destroy($id)
     {
-        //
+        $course = Course::findOrFail($id);
+        $course->delete();
+
+        return redirect()->back()->with('message', "Course \"$course\" title deleted successfull");
     }
 
     public function add_partisipant(Request $request)

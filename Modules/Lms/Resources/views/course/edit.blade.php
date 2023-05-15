@@ -46,7 +46,63 @@
     </div>
 
     <div class="row">
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <h2>Course Activities</h2>
+          </div>
+          <div class="card-body">
+            <ul class="list-group">
+              @foreach ($courseActivities as $item)
+                <li class="list-group-item d-flex justify-content-center gap-2">
+                  <span>
+                    {{ $item->activities->title }}
+                  </span>
+                  -
+                  <span>
+                    {{ array_slice(explode('\\', $item->model_type), -1)[0] }}
+                  </span>
+                </li>
+              @endforeach
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12 mb-3">
+        <div class="card">
+          <div class="card-header">
+            <h2>Activities</h2>
+          </div>
+          <div class="card-body">
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a class="nav-link active activity-tabs" data-type="quizzes" aria-current="page"
+                  href="javascript:void(0)">Quizzes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link activity-tabs" data-type="modules" aria-current="page"
+                  href="javascript:void(0)">Modules</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link activity-tabs" data-type="videos" aria-current="page"
+                  href="javascript:void(0)">Videos</a>
+              </li>
+            </ul>
+
+            <form action="{{ route('lms.course.activity.store') }}" method="post"
+              class="my-3 d-flex align-items-center gap-2">
+              @csrf
+              <input type="hidden" name="course_id" value="{{ request()->segment(3) }}">
+              <input type="hidden" name="model_type" value="{{ Quiz::class }}">
+              <select name="model_id" class="w-100 _select2 quizzes"></select>
+              <button type="submit" class="btn btn-primary btn-sm">Add</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-sm-12 mb-3">
         <div class="card">
           <div class="card-header">
             <h2>Contributors</h2>
@@ -63,7 +119,7 @@
         </div>
       </div>
 
-      <div class="col-md-6 col-sm-12">
+      <div class="col-md-6 col-sm-12 mb-3">
         <div class="card">
           <div class="card-header">
             <h2>Partisipants</h2>

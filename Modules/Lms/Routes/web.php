@@ -17,4 +17,6 @@ Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(fu
 
     Route::resource('course', CourseController::class)->names('lms.course');
     Route::post('course.add-partisipant', [CourseController::class, 'add_partisipant'])->name('lms.course.add-partisipant');
+
+    Route::resource('course/activity', CourseActivityController::class)->only('store')->names('lms.course.activity');
 });
