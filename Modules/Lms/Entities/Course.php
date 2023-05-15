@@ -20,4 +20,9 @@ class Course extends Model
     {
         return $this->belongsToMany(User::class, 'course_partisipant', 'course_id', 'user_id')->withTimestamps();
     }
+
+    protected static function newFactory()
+    {
+        return \Modules\Lms\Database\factories\CourseFactory::new();
+    }
 }

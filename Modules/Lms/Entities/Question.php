@@ -5,24 +5,23 @@ namespace Modules\Lms\Entities;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Module extends Model
+class Question extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'user_id',
-        'title',
-        'description',
-        'body'
+        'quiz_id',
+        'question'
     ];
 
-    public function activities()
+    public function answers()
     {
-        return $this->morphMany(CourseActivity::class, 'course_activities', 'model_type', 'id');
+        return $this->hasMany(Answer::class, 'question_id', 'id');
     }
 
     protected static function newFactory()
     {
-        return \Modules\Lms\Database\factories\ModuleFactory::new();
+        return \Modules\Lms\Database\factories\QuestionFactory::new();
     }
 }

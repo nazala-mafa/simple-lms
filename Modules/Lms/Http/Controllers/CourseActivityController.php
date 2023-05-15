@@ -2,6 +2,7 @@
 
 namespace Modules\Lms\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -23,13 +24,15 @@ class CourseActivityController extends Controller
 
         switch ($type) {
             case 'quizzes':
-                $activities = Quiz::where('title', 'like', "%$q%")->get()->map(function ($q) {
-                    return [
-                        'id' => $q->id,
-                        'text' => $q->title,
-                        'model_id' => $q->id
-                    ];
-                });
+                $activities = Quiz::where('title', 'like', "%$q%")
+                    ->with(['users' => fn($query) => $query->where('school_id', 2)])
+                    ->get()->map(function ($q) {
+                        return [
+                            'id' => $q->id,
+                            'text' => $q->title,
+                            'model_id' => $q->id
+                        ];
+                    });
                 break;
 
             case 'modules':

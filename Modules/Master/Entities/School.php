@@ -21,4 +21,9 @@ class School extends Model
     {
         return $this->hasOne(SchoolStatus::class, 'id', 'status_id');
     }
+
+    protected static function newFactory()
+    {
+        return \Modules\Master\Database\factories\SchoolFactory::new();
+    }
 }
