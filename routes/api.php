@@ -29,11 +29,3 @@ Route::group(['prefix' => '/auth', 'namespace' => '\App\Http\Controllers'], func
 
 Route::get('product/datatable', [ProductController::class, 'datatables']);
 Route::resource('product', '\App\Http\Controllers\Api\ProductController')->except('create', 'edit');
-
-Route::get('quiz/datatable', [QuizController::class, 'datatable']);
-Route::resource('quiz', QuizController::class)->only(['store', 'destroy'])->names('quiz');
-
-Route::get('quiz/{quiz_id}/question/datatable', [QuestionController::class, 'datatable']);
-Route::resource('quiz/{quiz_id}/question', QuestionController::class)->only(['store'])->names('question');
-
-Route::resource('quiz/{quiz_id}/question/{question_id}/answer', AnswerController::class)->only(['store'])->names('answer');

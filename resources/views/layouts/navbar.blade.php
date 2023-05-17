@@ -54,9 +54,6 @@
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('quiz.index') }}" class="nav-link">Quiz</a>
-          </li>
-          <li class="nav-item">
             <a href="{{ route('product.index') }}" class="nav-link">Product</a>
           </li>
         @endauth
