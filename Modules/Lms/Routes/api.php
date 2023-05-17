@@ -3,6 +3,8 @@
 use Illuminate\Http\Request;
 use Modules\Lms\Http\Controllers\CourseActivityController;
 use Modules\Lms\Http\Controllers\CourseController;
+use Modules\Lms\Http\Controllers\QuestionController;
+use Modules\Lms\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,15 @@ use Modules\Lms\Http\Controllers\CourseController;
 */
 
 Route::prefix('lms')->middleware('auth:sanctum')->group(function () {
+    // Route::prefix('lms')->group(function () {
     Route::get('course/datatable', [CourseController::class, 'datatable'])->name('course.datatable');
 
     Route::get('course/activity', [CourseActivityController::class, 'index'])->name('course.activity');
+
+    Route::get('quiz/datatable', [QuizController::class, 'datatable']);
+    Route::resource('quiz', QuizController::class)->only(['store', 'update', 'destroy'])->names('lms.quiz');
+    Route::get('quiz/{quiz_id}/question/datatable', [QuestionController::class, 'quiz_datatable']);
+    Route::post('quiz/question/add', [QuestionController::class, 'add_quiz_question']);
+    Route::delete('quiz/question/remove', [QuestionController::class, 'remove_quiz_question']);
+    Route::get('question/datatable', [QuestionController::class, 'datatable']);
 });

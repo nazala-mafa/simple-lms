@@ -32,3 +32,13 @@ if (
 ) {
   import("./lms/course.edit");
 }
+if (window.location.pathname === "/lms/quiz") {
+  import("./lms/quiz");
+}
+if (
+  window.location.pathname.split("/")[1] === "lms" &&
+  window.location.pathname.split("/")[2] === "quiz" &&
+  window.location.pathname.split("/")[4] === "edit"
+) {
+  import("./lms/quiz-edit");
+}

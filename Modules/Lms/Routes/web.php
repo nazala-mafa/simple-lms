@@ -1,5 +1,6 @@
 <?php
 use Modules\Lms\Http\Controllers\CourseController;
+use Modules\Lms\Http\Controllers\QuizController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +20,5 @@ Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(fu
     Route::post('course.add-partisipant', [CourseController::class, 'add_partisipant'])->name('lms.course.add-partisipant');
 
     Route::resource('course/activity', CourseActivityController::class)->only('store')->names('lms.course.activity');
+    Route::resource('quiz', QuizController::class)->names('lms.quiz')->only(['index', 'edit']);
 });
