@@ -3,8 +3,9 @@
 @section('content')
   <div class="container">
     <div class="card mb-3">
-      <div class="card-header">
+      <div class="card-header d-flex justify-content-between align-items-center">
         <h1>Edit "{{ $course->title }}" Course</h1>
+        <a href="/lms/course" class="btn btn-primary">Back</a>
       </div>
       <div class="card-body">
         <form method="POST" action="{{ route('lms.course.update', $course->id) }}">

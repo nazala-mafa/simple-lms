@@ -42,3 +42,6 @@ if (
 ) {
   import("./lms/quiz-edit");
 }
+if (window.location.pathname === "/lms/question") {
+  import("./lms/question");
+}

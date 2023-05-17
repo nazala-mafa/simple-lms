@@ -21,6 +21,10 @@ return new class extends Migration {
             $table->foreign('quiz_id')->on('quizzes')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
             $table->foreign('question_id')->on('questions')->references('id')->cascadeOnUpdate()->cascadeOnDelete();
         });
+
+        Schema::table('questions', function (Blueprint $table) {
+            $table->dropColumn('quiz_id');
+        });
     }
 
     /**
@@ -30,6 +34,10 @@ return new class extends Migration {
      */
     public function down()
     {
+        Schema::table('questions', function (Blueprint $table) {
+            $table->unsignedBigInteger('quiz_id')->nullable();
+        });
+
         Schema::dropIfExists('quiz_question');
     }
 };

@@ -48,13 +48,16 @@ class CourseController extends Controller
             'is_published' => 'required'
         ]);
 
+        $user_id = auth()->user()->id;
+
         $course = Course::create([
             'title' => $request->title,
             'description' => $request->description,
+            'user_id' => $user_id,
+            'school_id' => auth()->user()->school_id,
             'is_published' => $request->is_published
         ]);
 
-        $user_id = auth()->user()->id;
         $course->contributors()->attach($user_id);
 
         return redirect()->route('lms.course.index')->with('message', "Course \"$course->title\" added successfully");
