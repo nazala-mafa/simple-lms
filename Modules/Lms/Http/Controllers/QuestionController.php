@@ -5,6 +5,7 @@ namespace Modules\Lms\Http\Controllers;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Lms\Entities\Answer;
 use Modules\Lms\Entities\Question;
 use Modules\Lms\Entities\Quiz;
 use Yajra\DataTables\DataTables;

@@ -1,4 +1,5 @@
 <?php
+use Modules\Lms\Http\Controllers\AnswerController;
 use Modules\Lms\Http\Controllers\CourseController;
 use Modules\Lms\Http\Controllers\QuestionController;
 use Modules\Lms\Http\Controllers\QuizController;
@@ -24,4 +25,6 @@ Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(fu
     Route::resource('quiz', QuizController::class)->names('lms.quiz')->only(['index', 'edit']);
 
     Route::resource('question', QuestionController::class)->names('lms.question')->only(['index', 'edit', 'update']);
+
+    Route::resource('answer', AnswerController::class)->names('lms.answer');
 });

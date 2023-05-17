@@ -45,3 +45,6 @@ if (
 if (window.location.pathname === "/lms/question") {
   import("./lms/question");
 }
+if (window.location.pathname.match(/^\/lms\/question\/([^/]+)\/edit$/)) {
+  import("./lms/question-edit");
+}

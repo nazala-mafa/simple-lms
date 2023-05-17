@@ -25,6 +25,10 @@ return new class extends Migration {
         Schema::table('questions', function (Blueprint $table) {
             $table->dropColumn('quiz_id');
         });
+
+        Schema::table('answers', function (Blueprint $table) {
+            $table->dropColumn('quiz_id');
+        });
     }
 
     /**
@@ -34,6 +38,10 @@ return new class extends Migration {
      */
     public function down()
     {
+        Schema::table('answers', function (Blueprint $table) {
+            $table->unsignedBigInteger('quiz_id')->nullable();
+        });
+
         Schema::table('questions', function (Blueprint $table) {
             $table->unsignedBigInteger('quiz_id')->nullable();
         });
