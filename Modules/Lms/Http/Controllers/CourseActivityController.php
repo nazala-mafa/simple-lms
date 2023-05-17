@@ -23,9 +23,9 @@ class CourseActivityController extends Controller
         $q = request()->q;
 
         switch ($type) {
-            case 'quizzes':
+            case 'quiz':
                 $activities = Quiz::where('title', 'like', "%$q%")
-                    ->with(['users' => fn($query) => $query->where('school_id', 2)])
+                    ->where('school_id', auth()->user()->school_id)
                     ->get()->map(function ($q) {
                         return [
                             'id' => $q->id,
@@ -35,14 +35,16 @@ class CourseActivityController extends Controller
                     });
                 break;
 
-            case 'modules':
-                $activities = Module::where('title', 'like', "%$q%")->get()->map(function ($q) {
-                    return [
-                        'id' => $q->id,
-                        'text' => $q->title,
-                        'model_id' => $q->id
-                    ];
-                });
+            case 'module':
+                $activities = Module::where('title', 'like', "%$q%")
+                    ->where('school_id', auth()->user()->school_id)
+                    ->get()->map(function ($q) {
+                        return [
+                            'id' => $q->id,
+                            'text' => $q->title,
+                            'model_id' => $q->id
+                        ];
+                    });
                 break;
 
             default:
@@ -86,9 +88,9 @@ class CourseActivityController extends Controller
     public function getModelType()
     {
         switch (request()->model_type) {
-            case 'Quiz':
+            case 'quiz':
                 return Quiz::class;
-            case 'Module':
+            case 'module':
                 return Module::class;
             default:
                 throw ValidationException::withMessages(['Invalid model type']);

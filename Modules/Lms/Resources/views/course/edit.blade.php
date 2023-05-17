@@ -77,16 +77,20 @@
           <div class="card-body">
             <ul class="nav nav-tabs">
               <li class="nav-item">
-                <a class="nav-link active activity-tabs" data-type="quizzes" aria-current="page"
+                <a class="nav-link active activity-tabs" data-type="quiz" aria-current="page"
                   href="javascript:void(0)">Quizzes</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link activity-tabs" data-type="modules" aria-current="page"
+                <a class="nav-link activity-tabs" data-type="module" aria-current="page"
                   href="javascript:void(0)">Modules</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link activity-tabs" data-type="videos" aria-current="page"
+                <a class="nav-link activity-tabs" data-type="video" aria-current="page"
                   href="javascript:void(0)">Videos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link activity-tabs" data-type="document" aria-current="page"
+                  href="javascript:void(0)">Documents</a>
               </li>
             </ul>
 

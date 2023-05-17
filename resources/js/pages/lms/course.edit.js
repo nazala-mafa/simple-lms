@@ -18,7 +18,9 @@ $(".activity-tabs").on("click", function () {
     $(".activity-tabs").removeClass("active");
     $(this).addClass("active");
 
-    searchFor($(this).data("type"));
+    const type = $(this).data("type");
+    searchFor(type);
+    $('input[name="model_type"]').val(type);
   }
 });
 

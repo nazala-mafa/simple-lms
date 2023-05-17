@@ -15,7 +15,7 @@ use Modules\Lms\Http\Controllers\CourseController;
 |
 */
 
-Route::prefix('lms')->group(function () {
+Route::prefix('lms')->middleware('auth:sanctum')->group(function () {
     Route::get('course/datatable', [CourseController::class, 'datatable'])->name('course.datatable');
 
     Route::get('course/activity', [CourseActivityController::class, 'index'])->name('course.activity');

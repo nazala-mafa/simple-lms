@@ -113,7 +113,7 @@ class CourseController extends Controller
             $course->contributors()->where('users.id', $user_id)->update(['user_id' => $user_id]);
         }
 
-        return redirect()->route('lms.course.index')->with('message', "Course \"$course->title\" updated successfully");
+        return redirect()->back()->with('message', "Course \"$course->title\" updated successfully");
     }
 
     /**
@@ -141,6 +141,7 @@ class CourseController extends Controller
             $course->partisipants()->attach($request->user_id);
         } else {
             $course->partisipants()->where('users.id', $request->user_id)->update(['user_id' => $request->user_id]);
+            return redirect()->back()->with('error', "You cannot add the same partisipant.");
         }
 
         return redirect()->back()->with('message', "Partisipant added successfully.");
