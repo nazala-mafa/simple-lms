@@ -31,6 +31,11 @@ class Quiz extends Model
         return $this->belongsToMany(Question::class, 'quiz_question', 'quiz_id', 'question_id');
     }
 
+    public function scores()
+    {
+        return $this->hasMany(QuizScoreUser::class, 'quiz_id', 'id');
+    }
+
     protected static function newFactory()
     {
         return \Modules\Lms\Database\factories\QuizFactory::new();

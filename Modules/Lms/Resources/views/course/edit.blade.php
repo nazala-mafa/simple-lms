@@ -55,14 +55,17 @@
           <div class="card-body">
             <ul class="list-group">
               @foreach ($courseActivities as $item)
-                <li class="list-group-item d-flex justify-content-center gap-2">
+                <li class="list-group-item d-flex justify-content-between gap-2">
                   <span>
-                    {{ $item->activities->title }}
+                    {{ $item->activities?->title }}
                   </span>
-                  -
-                  <span>
-                    {{ array_slice(explode('\\', $item->model_type), -1)[0] }}
-                  </span>
+
+                  <div class="d-flex justify-content-end align-items-center gap-2">
+                    <span
+                      class="badge btn btn-primary btn-sm rounded-pill p-1 px-2">{{ array_slice(explode('\\', $item->model_type), -1)[0] }}</span>
+                    <button action="{{ route('lms.course.activity.destroy', $item->id) }}"
+                      class="badge btn btn-danger btn-sm p-1 px-2 rounded-pill btn-del">delete</button>
+                  </div>
                 </li>
               @endforeach
             </ul>

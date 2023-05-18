@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Modules\Lms\Entities\Course;
 use Modules\Master\Entities\School;
 use Spatie\Permission\Traits\HasRoles;
 
@@ -48,5 +49,10 @@ class User extends Authenticatable
     public function school()
     {
         return $this->hasOne(School::class, 'id', 'school_id');
+    }
+
+    public function active_courses()
+    {
+        return $this->belongsToMany(Course::class, 'course_partisipant', 'user_id', 'course_id')->withTimestamps();
     }
 }

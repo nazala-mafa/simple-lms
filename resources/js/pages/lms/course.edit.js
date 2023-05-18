@@ -1,3 +1,5 @@
+import { confirmDelete, deleteData } from "../../util";
+
 const course_id = window.location.pathname.split("/")[3];
 
 function searchFor(type) {
@@ -25,3 +27,7 @@ $(".activity-tabs").on("click", function () {
 });
 
 searchFor("quizzes");
+
+$(".btn-del").click(function () {
+  confirmDelete(() => deleteData($(this).attr("action")));
+});

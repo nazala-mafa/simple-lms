@@ -11,11 +11,21 @@ class Answer extends Model
 
     protected $fillable = [
         'user_id',
-        'quiz_id',
         'question_id',
         'answer',
         'is_true'
     ];
+
+    public function answered($quizId)
+    {
+        // return $this->question_id;
+        return QuestionAnswerUser::where([
+            'quiz_id' => $quizId,
+            'user_id' => auth()->id(),
+            'question_id' => $this->question_id,
+            'answer_id' => $this->id,
+        ])->exists();
+    }
 
     protected static function newFactory()
     {
