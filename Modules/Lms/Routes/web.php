@@ -2,6 +2,7 @@
 use Modules\Lms\Http\Controllers\AnswerController;
 use Modules\Lms\Http\Controllers\CourseActivityController;
 use Modules\Lms\Http\Controllers\CourseController;
+use Modules\Lms\Http\Controllers\ModuleController;
 use Modules\Lms\Http\Controllers\MyCourseController;
 use Modules\Lms\Http\Controllers\QuestionController;
 use Modules\Lms\Http\Controllers\QuizController;
@@ -24,11 +25,13 @@ Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(fu
     Route::post('course.add-partisipant', [CourseController::class, 'add_partisipant'])->name('lms.course.add-partisipant');
     Route::resource('course/activity', CourseActivityController::class)->only('store', 'destroy')->names('lms.course.activity');
 
+    // Quiz and Question
     Route::resource('quiz', QuizController::class)->names('lms.quiz')->only('index', 'edit');
-
     Route::resource('question', QuestionController::class)->names('lms.question')->only('index', 'edit', 'update');
-
     Route::resource('answer', AnswerController::class)->names('lms.answer');
+
+    // Module
+    Route::resource('module', ModuleController::class)->names('lms.module');
 
     // List of My Courses
     Route::resource('my/course', MyCourseController::class)->names('lms.my.course')->only('show', 'index');

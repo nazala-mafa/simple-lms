@@ -13,7 +13,8 @@ class Module extends Model
         'user_id',
         'title',
         'description',
-        'body'
+        'body',
+        'school_id'
     ];
 
     public function activities()

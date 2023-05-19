@@ -50,6 +50,9 @@
                   <a href="{{ route('lms.question.index') }}" class="nav-link">Questions</a>
                 </li>
                 <li class="list-group-item">
+                  <a href="{{ route('lms.module.index') }}" class="nav-link">Modules</a>
+                </li>
+                <li class="list-group-item">
                   <a href="{{ route('lms.my.course.index') }}" class="nav-link">My Course</a>
                 </li>
               </ul>

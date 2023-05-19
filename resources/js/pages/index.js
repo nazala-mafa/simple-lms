@@ -36,3 +36,6 @@ if (window.location.pathname.match(/^\/lms\/my\/course$/)) {
 if (window.location.pathname.match(/^\/lms\/my\/course\/([^/]+)$/)) {
   import("./lms/my.course.show");
 }
+if (window.location.pathname.match(/^\/lms\/module$/)) {
+  import("./lms/module");
+}

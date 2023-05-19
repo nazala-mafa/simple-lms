@@ -20,6 +20,8 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+  @stack('head')
 </head>
 
 <body>
@@ -34,7 +36,6 @@
   @include('layouts.util')
 
   @livewireScripts
-  @yield('script')
   @vite(['resources/js/app.js'])
 
   {{-- Show Flash Message --}}
@@ -59,6 +60,8 @@
       let swalPushData = null
     </script>
   @endif
+
+  @stack('script')
 
   <div style="height: 20em;"></div>
 </body>
