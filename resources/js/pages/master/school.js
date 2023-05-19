@@ -2,6 +2,12 @@ import { deleteData } from "../../util";
 
 $(function () {
   const table = $("#school").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/master/school/datatable",
@@ -46,6 +52,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
     drawCallback() {

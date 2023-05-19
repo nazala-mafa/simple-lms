@@ -2,6 +2,12 @@ $(function () {
   const course_id = window.location.pathname.split("/")[4];
 
   const table = $("#my-course-activity").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: `/api/lms/my/course/${course_id}/activity/datatable`,
@@ -36,6 +42,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
   });

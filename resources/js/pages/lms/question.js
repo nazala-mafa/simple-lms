@@ -14,6 +14,12 @@ function showAddModal() {
 
 $(function () {
   const table = $("#question").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/lms/question/datatable",
@@ -51,6 +57,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false, 
       },
     ],
     drawCallback() {

@@ -4,7 +4,7 @@
   <div class="container">
     <h1>Schools List</h1>
     <div class="row">
-      <div class="card">
+      <div class="card overflow-auto">
         <div class="card-body">
           <table class="display" style="width: 100%;" id="school">
             <thead>

@@ -2,11 +2,11 @@
 
 namespace Modules\Master\Http\Controllers;
 
-use App\Models\Quiz;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Validation\Rule;
+use Modules\Lms\Entities\SchoolStatuses;
 use Modules\Master\Entities\School;
 use Modules\Master\Entities\SchoolStatus;
 use Yajra\DataTables\DataTables;

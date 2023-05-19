@@ -4,6 +4,12 @@ const quiz_id = window.location.pathname.split("/")[3];
 
 $(function () {
   const schoolQuestions = $("#school-questions").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/lms/question/datatable",
@@ -40,6 +46,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
     drawCallback() {

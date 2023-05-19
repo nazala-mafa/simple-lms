@@ -24,8 +24,14 @@ function editQuiz() {
   modal.show();
 }
 
-$(document).ready(function () {
+$(function () {
   const table = $("#quiz").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/lms/quiz/datatable",
@@ -64,6 +70,7 @@ $(document).ready(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
     drawCallback() {

@@ -1,5 +1,11 @@
 $(function () {
   const table = $("#my-course").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/lms/my/course/datatable",
@@ -34,6 +40,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
   });

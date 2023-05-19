@@ -13,3 +13,11 @@ $(function () {
     theme: "classic",
   });
 });
+
+document.querySelector("body").classList.contains("dark-version")
+  ? localStorage.setItem("dark-mode", false)
+  : localStorage.setItem("dark-mode", true);
+
+if (localStorage.getItem("dark-mode") == true) {
+  darkMode(document.querySelector("#dark-version"));
+}

@@ -2,6 +2,12 @@ let modal = new bootstrap.Modal(document.getElementById("modal"));
 
 $(document).ready(function () {
   const table = $("#products").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/product/datatable",
@@ -41,6 +47,7 @@ $(document).ready(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
   });

@@ -8,7 +8,7 @@
   <!-- CSRF Token -->
   <meta name="csrf-token" content="{{ csrf_token() }}">
 
-  <title>{{ config('app.name', 'Laravel') }}</title>
+  <title>{{ isset($title) ? $title : config('app.name', 'Laravel') }}</title>
 
   <!-- Fonts -->
   <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -18,25 +18,43 @@
   @vite(['resources/sass/app.scss'])
   @livewireStyles
 
+  <link id="pagestyle" href="/assets/css/argon-dashboard.min.css" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+  {{-- Argon Icon --}}
+  <script src="https://kit.fontawesome.com/42d5adcbca.js" crossorigin="anonymous"></script>
+  <link href="/assets/css/nucleo-icons.css" rel="stylesheet" />
+
+  @vite(['resources/sass/datatables.scss'])
 
   @stack('head')
 </head>
 
-<body>
+<body class="g-sidenav-show bg-gray-100">
   <div id="app">
-    @include('layouts.navbar')
+    <div class="min-height-300 bg-primary position-absolute w-100"></div>
 
-    <main class="py-4">
+    @include('layouts.navbar')
+    @include('layouts.sidebar')
+
+    <main class="main-content position-relative border-radius-lg ">
+      @include('layouts.navbar-private')
       @yield('content')
     </main>
+
+    @include('layouts.sidebar-right')
   </div>
 
   @include('layouts.util')
 
   @livewireScripts
   @vite(['resources/js/app.js'])
+
+  {{-- <script src="/assets/js/core/popper.min.js"></script> --}}
+  {{-- <script src="/assets/js/core/bootstrap.min.js"></script> --}}
+  <script src="/assets/js/plugins/perfect-scrollbar.min.js"></script>
+  <script src="/assets/js/plugins/smooth-scrollbar.min.js"></script>
+  <script src="/assets/js/argon-dashboard.min.js"></script>
 
   {{-- Show Flash Message --}}
   @if (Session::has('message'))

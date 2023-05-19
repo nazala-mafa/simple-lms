@@ -2,10 +2,16 @@ import { deleteData } from "../../util";
 
 $(function () {
   const table = $("#user").DataTable({
+    language: {
+      paginate: {
+        previous: "&larr;",
+        next: "&rarr;",
+      },
+    },
     processing: true,
     serverSide: true,
     ajax: "/api/master/user/datatable",
-    buttons: ["add"],
+    buttons: ["add", "reload"],
     columns: [
       {
         data: "id",
@@ -53,6 +59,7 @@ $(function () {
             </div>
           `;
         },
+        orderable: false,
       },
     ],
     drawCallback() {
