@@ -15,7 +15,10 @@ class CourseController extends Controller
     public function datatable()
     {
         //get courses that you are contributor
-        return DataTables::of(Course::where('school_id', auth()->user()->school_id)->get())->toJson();
+        return DataTables::of(Course::where([
+            'user_id' => auth()->user()->user_id,
+            'school_id' => auth()->user()->school_id
+        ])->get())->toJson();
     }
     /**
      * Display a listing of the resource.

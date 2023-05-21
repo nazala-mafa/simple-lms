@@ -2,6 +2,7 @@
 
 namespace Modules\Lms\Entities;
 
+use App\Models\Tag;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -18,6 +19,11 @@ class Question extends Model
     public function answers()
     {
         return $this->hasMany(Answer::class, 'question_id', 'id');
+    }
+
+    public function tags()
+    {
+        return $this->morphToMany(Tag::class, 'taggable');
     }
 
     protected static function newFactory()

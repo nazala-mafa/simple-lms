@@ -14,12 +14,23 @@ class QuestionController extends Controller
 {
     public function datatable()
     {
-        return DataTables::of(Question::where('school_id', auth()->user()->school_id)->get())->toJson();
+        // just show your own questions
+        return DataTables::of(Question::where([
+            'school_id' => auth()->user()->school_id,
+            'user_id' => auth()->id()
+        ])->get())->toJson();
     }
 
-    public function quiz_datatable($quiz_id)
+    /**
+     * Display question from quiz
+     * @param Quiz $quiz
+     */
+    public function quiz_datatable($quiz)
     {
-        return DataTables::of(Quiz::find($quiz_id)->questions()->where('school_id', auth()->user()->school_id)->get())->toJson();
+        return DataTables::of($quiz->questions()->where([
+            'school_id' => auth()->user()->school_id,
+            'user_id' => auth()->id()
+        ])->get())->toJson();
     }
 
     public function add_quiz_question(Request $request)
@@ -68,10 +79,15 @@ class QuestionController extends Controller
         return view('lms::question.index');
     }
 
+    public function create()
+    {
+        return view('lms::question.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
+     * @return \Illuminate\Http\RedirectResponse 
      */
     public function store(Request $request)
     {
@@ -79,16 +95,13 @@ class QuestionController extends Controller
             'question' => 'required',
         ]);
 
+        $question = new Question();
+        $question->school_id = auth()->user()->school_id;
+        $question->user_id = auth()->id();
+        $question->question = $request->question;
+        $question->save();
 
-        Question::create([
-            'school_id' => auth()->user()->school_id,
-            'user_id' => auth()->id(),
-            'question' => $request->question
-        ]);
-
-        return response()->json([
-            'message' => 'New Question Added',
-        ], 200);
+        return redirect()->route('lms.question.edit', $question->id)->with('message', 'New question added successfully.');
     }
 
     /**

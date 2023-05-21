@@ -29,8 +29,7 @@
             @enderror
           </div>
           <div class="mb-3">
-            <textarea name="body" id="editor" class="form-control @error('body') is-invalid @enderror"
-              placeholder="Input Body">{{ old('body', $module->body) }}</textarea>
+            <textarea name="body" class="ckeditor form-control @error('body') is-invalid @enderror" placeholder="Input Body">{{ old('body', $module->body) }}</textarea>
             @error('body')
               <p class="invalid-feedback">
                 {{ $message }}

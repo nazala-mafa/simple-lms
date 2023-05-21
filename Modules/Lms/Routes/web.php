@@ -27,7 +27,7 @@ Route::prefix('lms')->middleware(['role:Super Admin|Student|Teacher'])->group(fu
 
     // Quiz and Question
     Route::resource('quiz', QuizController::class)->names('lms.quiz')->only('index', 'edit');
-    Route::resource('question', QuestionController::class)->names('lms.question')->only('index', 'edit', 'update');
+    Route::resource('question', QuestionController::class)->names('lms.question')->only('index', 'create', 'store', 'edit', 'update');
     Route::resource('answer', AnswerController::class)->names('lms.answer');
 
     // Module

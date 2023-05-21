@@ -76,28 +76,20 @@
                   <span class="sidenav-normal">Modules</span>
                 </a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{{ route('lms.my.course.index') }}">
-                  <span class="sidenav-mini-icon"> MC </span>
-                  <span class="sidenav-normal">My Course</span>
-                </a>
-              </li>
 
             </ul>
           </div>
         </li>
 
-        @if (false)
-          <li class="nav-item">
-            <a class="nav-link active" href="./pages/dashboard.html">
-              <div
-                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
-                <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
-              </div>
-              <span class="nav-link-text ms-1">Dashboard</span>
-            </a>
-          </li>
-        @endif
+        <li class="nav-item">
+          <a class="nav-link active" href="{{ route('lms.my.course.index') }}">
+            <div
+              class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+              <i class="ni ni-hat-3 text-primary text-sm opacity-10"></i>
+            </div>
+            <span class="nav-link-text ms-1">My Course</span>
+          </a>
+        </li>
 
 
       </ul>

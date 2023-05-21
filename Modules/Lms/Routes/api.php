@@ -34,7 +34,7 @@ Route::prefix('lms')->middleware('auth:sanctum')->group(function () {
 
     // Question
     Route::get('question/datatable', [QuestionController::class, 'datatable']);
-    Route::resource('question', QuestionController::class)->only(['store', 'destroy']);
+    Route::resource('question', QuestionController::class)->only('destroy');
 
     // My Course
     Route::get('my/course/datatable', [MyCourseController::class, 'datatable']);

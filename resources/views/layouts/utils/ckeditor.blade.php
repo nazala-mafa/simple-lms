@@ -23,7 +23,7 @@
 
   <script>
     ClassicEditor
-      .create(document.querySelector('#editor'), {
+      .create(document.querySelector('.ckeditor'), {
         ckfinder: {
           uploadUrl: `{{ route('ckeditor.image-upload', ['_token' => csrf_token()]) }}`
         }

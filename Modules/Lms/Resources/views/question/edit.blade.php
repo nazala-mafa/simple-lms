@@ -1,4 +1,5 @@
 @extends('lms::layouts.master')
+@include('layouts.utils.ckeditor')
 
 @section('content')
   <div class="container">
@@ -6,7 +7,7 @@
       <div class="col-xl-6 col-md-12 mb-3">
         <div class="card">
           <div class="card-header d-flex justify-content-between align-items-center">
-            <h2>Edit Question "{{ $question->question }}"</h2>
+            <h2>Edit Question</h2>
             <a href="{{ route('lms.question.index') }}" class="btn btn-primary">Back</a>
           </div>
           <div class="card-body">
@@ -14,8 +15,7 @@
               @csrf
               @method('PATCH')
               <div class="mb-3">
-                <input type="text" name="question" class="form-control @error('question') is-invalid @enderror"
-                  placeholder="Question" value="{{ old('question', $question->question) }}">
+                <textarea name="question" class="ckeditor form-control @error('question') is-invalid @enderror" placeholder="Question">{!! old('question', $question->question) !!}</textarea>
                 @error('question')
                   <p class="invalid-feedback">
                     {{ $message }}
@@ -31,7 +31,7 @@
       </div>
 
       <div class="col-xl-6 col-md-12 mb-3">
-        <div class="card">
+        <div class="card mb-3">
           <div class="card-header d-flex justify-content-between align-items-center">
             <h3>Answers</h3>
             <a href="{{ route('lms.answer.create', ['question_id' => $question->id]) }}" class="btn btn-primary">New
@@ -54,6 +54,12 @@
                 </li>
               @endforeach
             </ul>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            @livewire('add-tags', [$question])
           </div>
         </div>
       </div>
