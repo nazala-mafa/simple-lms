@@ -20,12 +20,30 @@ class DoQuiz extends Component
         $this->quizId = request()->segment(4);
 
         if (!count($this->questions)) {
-            $this->questions = Quiz::find($this->quizId)->questions;
+            // Not Shuffled
+            // $this->questions = Quiz::find($this->quizId)->questions;
+            // Shuffled
+            if (cache()->get('questions')) {
+                $this->questions = cache()->get('questions');
+            } else {
+                $questions = Quiz::find($this->quizId)->questions->shuffle()->map(function ($q) {
+                    $q->answers = $q->answers->shuffle();
+                    return $q;
+                });
+
+                $this->questions = $questions;
+
+                cache()->set('questions', $questions);
+            }
         }
     }
 
     public function render()
     {
+        if (cache()->get('questions')) {
+            $this->questions = cache()->get('questions');
+        }
+
         if (count($this->questions)) {
             $this->activeQuestion = $this->questions[$this->activeQuestionIndex];
         }

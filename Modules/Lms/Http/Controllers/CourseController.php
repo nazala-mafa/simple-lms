@@ -12,11 +12,16 @@ use Yajra\DataTables\DataTables;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Super Admin|Teacher');
+    }
+
     public function datatable()
     {
         //get courses that you are contributor
         return DataTables::of(Course::where([
-            'user_id' => auth()->user()->user_id,
+            'user_id' => auth()->id(),
             'school_id' => auth()->user()->school_id
         ])->get())->toJson();
     }

@@ -10,6 +10,11 @@ use Yajra\DataTables\DataTables;
 
 class ModuleController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Super Admin|Teacher');
+    }
+
     public function datatable()
     {
         return DataTables::of(Module::where([

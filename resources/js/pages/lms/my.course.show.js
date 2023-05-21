@@ -11,18 +11,7 @@ $(function () {
     processing: true,
     serverSide: true,
     ajax: `/api/lms/my/course/${course_id}/activity/datatable`,
-    buttons: [
-      {
-        text: "<u>N</u>ew",
-        key: {
-          key: "N",
-          altKey: true,
-        },
-        action: () => {
-          showAddModal();
-        },
-      },
-    ],
+    buttons: [],
     columns: [
       {
         data: "activity.id",

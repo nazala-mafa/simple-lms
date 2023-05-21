@@ -95,7 +95,10 @@
       </ul>
     </div>
     <div class="sidenav-footer mx-3 ">
-      <a href="{{ route('logout') }}" class="btn btn-dark btn-sm w-100 mb-3">Signout</a>
+      <form action="{{ route('logout') }}" method="post">
+        @csrf
+        <button class="btn btn-dark btn-sm w-100 mb-3">Signout</button>
+      </form>
     </div>
   </aside>
 @endauth

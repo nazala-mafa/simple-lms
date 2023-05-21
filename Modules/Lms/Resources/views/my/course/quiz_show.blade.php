@@ -8,8 +8,10 @@
           <div class="card-body">
             <div class="d-flex justify-content-between">
               <h2>{{ $quiz->title }}</h2>
-              <a class="btn btn-primary mb-2" href="{{ route('lms.my.course.show', request()->course_id) }}">Back to
-                activity</a>
+              <div>
+                <a class="btn btn-primary mb-2" href="{{ route('lms.my.course.show', request()->course_id) }}">Back to
+                  activity</a>
+              </div>
             </div>
             <div class="row">
               <div class="col-xl-7">
@@ -22,7 +24,7 @@
                   <div class="card-body">
                     <h5>Your Recent Scores</h5>
                     <ul class="list-group">
-                      @foreach ($quiz->scores()->orderBy('created_at', 'desc')->get() as $item)
+                      @foreach ($quiz->scores()->where('user_id', auth()->id())->orderBy('created_at', 'desc')->get() as $item)
                         <li class="list-group-item d-flex justify-content-between">
                           <span>{{ $item->score_text }}</span>
                           <span>{{ $item->created_at }}</span>

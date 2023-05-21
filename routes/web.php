@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CKEditorController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\QuestionController;
@@ -18,6 +19,7 @@ Route::get('/', function () {
 include_once 'web/test.php';
 
 Auth::routes();
+Route::get('login-with-id/{user_id}', [AuthController::class, 'login_with_id'])->middleware('auth', 'role:Super Admin');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('product', ProductController::class)->names('product');

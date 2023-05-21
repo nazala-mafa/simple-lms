@@ -91,6 +91,8 @@ class MyCourseController extends Controller
             'user_id' => auth()->id()
         ])->get()->map(fn($a) => $a->delete());
 
+        cache()->delete('questions');
+
         return redirect()->route('lms.my.course.activity', [$activity->course_id, $activity->id])->with('message', "Your score is $percent");
     }
 }

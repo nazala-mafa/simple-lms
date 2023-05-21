@@ -11,9 +11,17 @@ use Yajra\DataTables\DataTables;
 
 class QuizController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Super Admin|Teacher');
+    }
+
     public function datatable()
     {
-        return DataTables::of(Quiz::select('*'))->toJson();
+        return DataTables::of(Quiz::where([
+            'user_id' => auth()->id(),
+            'school_id' => auth()->user()->school_id
+        ]))->toJson();
     }
     /**
      * Display a listing of the resource.

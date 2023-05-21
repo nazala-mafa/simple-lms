@@ -20,4 +20,10 @@ class AuthController extends Controller
 
         return response()->json(['message' => 'Invalid login credentials.'], 401);
     }
+
+    public function login_with_id(User $user)
+    {
+        Auth::login($user);
+        return redirect()->to('/')->with('message', "Login as $user->name successfully");
+    }
 }

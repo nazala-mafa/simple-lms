@@ -54,6 +54,7 @@ $(function () {
 
           return `
             <div class="d-flex justify-content-center gap-2">
+              <a class="btn btn-sm btn-info" href="/login-with-id/${row.id}">login</a>
               <a class="btn btn-sm btn-primary" href="/master/user/${row.id}/edit">edit</a>
               <button data-row='${rowData}' class="btn btn-sm btn-danger btn-delete">delete</button>
             </div>

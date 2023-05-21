@@ -12,6 +12,11 @@ use Yajra\DataTables\DataTables;
 
 class QuestionController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('role:Super Admin|Teacher');
+    }
+
     public function datatable()
     {
         // just show your own questions
