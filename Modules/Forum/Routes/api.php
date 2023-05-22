@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Modules\Forum\Http\Controllers\FeedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,10 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/forum', function (Request $request) {
-    return $request->user();
+
+Route::prefix('forum')->group(function () {
+    Route::resource('feed', FeedController::class)->names('feed')->except('create', 'edit');
+    Route::post('feed/{feed_id}/like', [FeedController::class, 'like']);
+    Route::post('feed/{feed_id}/dislike', [FeedController::class, 'dislike']);
+    Route::post('feed/{feed_id}/comment', [FeedController::class, 'store_comment']);
 });

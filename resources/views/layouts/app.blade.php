@@ -81,7 +81,7 @@
 
   @stack('script')
 
-  <div style="height: 20em;"></div>
+  <div style="height: 5em;"></div>
 </body>
 
 </html>
