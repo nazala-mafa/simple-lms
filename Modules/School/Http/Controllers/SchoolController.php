@@ -1,12 +1,13 @@
 <?php
 
-namespace Modules\Perpus\Http\Controllers;
+namespace Modules\School\Http\Controllers;
 
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
+use Modules\Master\Entities\School;
 
-class PerpusController extends Controller
+class SchoolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +15,10 @@ class PerpusController extends Controller
      */
     public function index()
     {
-        return view('perpus::index');
+        if (auth()->user()->hasRole('Admin')) {
+            return $this->show(auth()->user()->school_id);
+        }
+        return view('school::school.index');
     }
 
     /**
@@ -23,7 +27,7 @@ class PerpusController extends Controller
      */
     public function create()
     {
-        return view('perpus::create');
+        return view('school::create');
     }
 
     /**
@@ -43,7 +47,8 @@ class PerpusController extends Controller
      */
     public function show($id)
     {
-        return view('perpus::show');
+        $school = School::find($id);
+        return view('school::school.show', compact('school'));
     }
 
     /**
@@ -53,7 +58,7 @@ class PerpusController extends Controller
      */
     public function edit($id)
     {
-        return view('perpus::edit');
+        return view('school::edit');
     }
 
     /**

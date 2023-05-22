@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\Perpus\Database\Seeders;
+namespace Modules\School\Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Eloquent\Model;
 
-class PerpusDatabaseSeeder extends Seeder
+class SchoolDatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.

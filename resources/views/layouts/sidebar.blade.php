@@ -101,6 +101,18 @@
           </a>
         </li>
 
+        @role(['Super Admin', 'Admin'])
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ route('school.index') }}">
+              <div
+                class="icon icon-shape icon-sm border-radius-md text-center me-2 d-flex align-items-center justify-content-center">
+                <i class="ni ni-hat-3 text-primary text-sm opacity-10"></i>
+              </div>
+              <span class="nav-link-text ms-1">School</span>
+            </a>
+          </li>
+        @endrole
+
 
       </ul>
     </div>

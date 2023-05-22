@@ -13,6 +13,6 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/perpus', function (Request $request) {
+Route::middleware('auth:api')->get('/school', function (Request $request) {
     return $request->user();
 });

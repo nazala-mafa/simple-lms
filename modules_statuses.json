@@ -3,5 +3,6 @@
     "Test": true,
     "Master": true,
     "Lms": true,
-    "Forum": true
+    "Forum": true,
+    "School": true
 }

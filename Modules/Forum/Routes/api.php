@@ -15,7 +15,7 @@ use Modules\Forum\Http\Controllers\FeedController;
 */
 
 
-Route::prefix('forum')->group(function () {
+Route::prefix('forum')->middleware('auth:sanctum')->group(function () {
     Route::resource('feed', FeedController::class)->names('feed')->except('create', 'edit');
     Route::post('feed/{feed_id}/like', [FeedController::class, 'like']);
     Route::post('feed/{feed_id}/dislike', [FeedController::class, 'dislike']);

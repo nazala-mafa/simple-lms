@@ -11,6 +11,6 @@
 |
 */
 
-Route::prefix('forum')->group(function () {
+Route::prefix('forum')->middleware('auth')->group(function () {
     Route::get('/', 'ForumController@home')->name('forum.index');
 });

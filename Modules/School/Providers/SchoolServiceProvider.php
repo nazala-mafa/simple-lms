@@ -1,21 +1,21 @@
 <?php
 
-namespace Modules\Perpus\Providers;
+namespace Modules\School\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Eloquent\Factory;
 
-class PerpusServiceProvider extends ServiceProvider
+class SchoolServiceProvider extends ServiceProvider
 {
     /**
      * @var string $moduleName
      */
-    protected $moduleName = 'Perpus';
+    protected $moduleName = 'School';
 
     /**
      * @var string $moduleNameLower
      */
-    protected $moduleNameLower = 'perpus';
+    protected $moduleNameLower = 'school';
 
     /**
      * Boot the application events.
@@ -84,8 +84,10 @@ class PerpusServiceProvider extends ServiceProvider
 
         if (is_dir($langPath)) {
             $this->loadTranslationsFrom($langPath, $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom($langPath);
         } else {
             $this->loadTranslationsFrom(module_path($this->moduleName, 'Resources/lang'), $this->moduleNameLower);
+            $this->loadJsonTranslationsFrom(module_path($this->moduleName, 'Resources/lang'));
         }
     }
 

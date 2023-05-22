@@ -23,6 +23,7 @@ class SchoolFactory extends Factory
         $num = fake()->numberBetween(1, 100);
         return [
             'name' => "SMA $num Jakarta Selatan",
+            'slug' => "sma-$num-jakarta-selatan",
             'email' => "sma${num}jaksel@gmail.com",
             'address' => fake()->address(),
             'status_id' => 1,

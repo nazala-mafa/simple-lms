@@ -1,4 +1,5 @@
 <?php
+use Modules\School\Http\Controllers\SchoolController;
 
 /*
 |--------------------------------------------------------------------------
@@ -11,6 +12,6 @@
 |
 */
 
-Route::prefix('perpus')->group(function() {
-    Route::get('/', 'PerpusController@index');
+Route::prefix('school')->middleware('auth')->group(function () {
+    Route::resource('/', SchoolController::class)->names('school');
 });
