@@ -34,17 +34,11 @@
   <div id="app">
     <div class="min-height-300 bg-primary position-absolute w-100"></div>
 
-    @guest
-      @include('layouts.navbar')
-    @endguest
-    @include('layouts.sidebar')
-
     <main class="main-content position-relative border-radius-lg ">
-      @include('layouts.navbar-private')
+      @include('layouts.navbar')
       @yield('content')
     </main>
 
-    @include('layouts.sidebar-right')
   </div>
 
   @include('layouts.util')

@@ -14,9 +14,10 @@ Auth::routes();
 Route::get('login-with-id/{user_id}', [AuthController::class, 'login_with_id'])->middleware('auth', 'role:Super Admin');
 
 Route::get('/', [SchoolController::class, 'index']);
-Route::get('/{slug}', [SchoolController::class, 'show']);
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 // Route::resource('product', ProductController::class)->names('product')->middleware('auth');
 
 Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload')->middleware('auth');
+
+Route::get('/{slug}', [SchoolController::class, 'show']);
