@@ -30,11 +30,10 @@
   @stack('head')
 </head>
 
-<body class="g-sidenav-show bg-gray-100">
+<body class="g-sidenav-show ">
   <div id="app">
-    <div class="min-height-300 bg-primary position-absolute w-100"></div>
 
-    <main class="main-content position-relative border-radius-lg ">
+    <main class="main-content position-relative">
       @include('layouts.navbar')
       @yield('content')
     </main>

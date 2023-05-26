@@ -15,5 +15,34 @@ class SchoolOption extends Model
         'value'
     ];
 
-    protected $timestamps = false;
+    public static function getOption($school_id, $key, $default)
+    {
+        return self::where([
+            'school_id' => $school_id,
+            'key' => $key
+        ])->first()->value ?? $default;
+    }
+
+    public static function setOption($school_id, $key, $value)
+    {
+        $opt = self::where([
+            'school_id' => $school_id,
+            'key' => $key
+        ])->first();
+
+        if ($opt) {
+            return self::where([
+                'school_id' => $school_id,
+                'key' => $key
+            ])->update(['value' => $value]);
+        } else {
+            return self::create([
+                'school_id' => $school_id,
+                'key' => $key,
+                'value' => $value
+            ]);
+        }
+    }
+
+    public $timestamps = false;
 }

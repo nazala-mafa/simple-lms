@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Blade;
 use Modules\Master\Entities\School;
+use Modules\School\Entities\SchoolOption;
 
 class SchoolController extends Controller
 {
@@ -16,6 +18,13 @@ class SchoolController extends Controller
     public function show($slug)
     {
         $school = School::where('slug', $slug)->firstOrFail();
-        return view('school.show', compact('school'));
+        $data = [
+            'school' => $school,
+            'option' => function ($key, $default) use ($school) {
+                return SchoolOption::getOption($school->id, $key, $default);
+            }
+        ];
+
+        return view('school.show.' . SchoolOption::getOption($school->id, 'template', 'template-1'), $data);
     }
 }

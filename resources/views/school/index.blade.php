@@ -1,6 +1,7 @@
 @extends('layouts.app-public')
 
 @section('content')
+  <div style="margin-top: 7em"></div>
   <div class="container">
     <div class="row">
       @foreach ($schools as $item)
