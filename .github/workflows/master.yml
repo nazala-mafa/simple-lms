@@ -14,7 +14,7 @@ jobs:
         with:
           switches: -avzr --delete --exclude=".env" --exclude=".htaccess" --exclude="/vendor/" --include="" --filter=""
           path: /
-          remote_path: /public_html/dev/smartschool
+          remote_path: /home/u1651000/public_html/app/smartschool
           remote_host: 194.163.42.227
           remote_port: 65002
           remote_user: u1651000
