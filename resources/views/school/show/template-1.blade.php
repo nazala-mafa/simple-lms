@@ -105,9 +105,11 @@
       @foreach ($teachers as $item)
         <div class="col-xl-4 p-1">
           <div class="card shadow-lg h-full m-4">
-            <div class="card-body">
+            <div class="card-body text-center">
               <img src="{{ $item->image }}" alt="" width="100%">
               <div class="lead text-center">{{ $item->name }}</div>
+              <a href="{{ url(request()->slug . '/teacher/' . $loop->index) }}" class="btn btn-primary">Teacher
+                Profile</a>
             </div>
           </div>
         </div>

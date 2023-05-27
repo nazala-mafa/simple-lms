@@ -20,4 +20,6 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::post('ckeditor/upload', [CKEditorController::class, 'upload'])->name('ckeditor.image-upload')->middleware('auth');
 
+// School Profile
 Route::get('/{slug}', [SchoolController::class, 'show']);
+Route::get('/{slug}/teacher/{teacher_id}', [SchoolController::class, 'teacher_show']);
