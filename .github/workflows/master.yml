@@ -15,7 +15,7 @@ jobs:
           FLAGS: -avzr --delete
           EXCLUDES: --exclude .htaccess --exclude .env --exclude /vendor/
           USER: u1651000
-          HOST: mafadev.com
+          HOST: mafadev.com:65002
           LOCALPATH: /
           REMOTEPATH: /home/u1651000/public_html/dev/smartschool
           DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
