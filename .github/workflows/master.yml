@@ -10,13 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - uses: contention/rsync-deployments@v2.0.0
+      - uses: burnett01/rsync-deployments@5.2.1
         with:
-          FLAGS: -avzr --delete
-          EXCLUDES: --exclude .htaccess --exclude .env --exclude /vendor/
-          USER: u1651000
-          HOST: mafadev.com
-          PORT: 65002
-          LOCALPATH: /
-          REMOTEPATH: /home/u1651000/public_html/dev/smartschool
-          DEPLOY_KEY: ${{ secrets.DEPLOY_KEY }}
+          switches: -avzr --delete --exclude=".env" --exclude=".htaccess" --exclude="/vendor/" --include="" --filter=""
+          path: /
+          remote_path: /home/u1651000/public_html/dev/smartschool
+          remote_host: mafadev.com
+          remote_port: 65002
+          remote_user: u1651000
+          remote_key: ${{ secrets.DEPLOY_KEY }}
